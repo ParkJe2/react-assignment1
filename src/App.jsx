@@ -36,18 +36,22 @@ export default function App() {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  // const likesBtnHandler = (id) => {
+  //   setTodos((prevTodos) =>
+  //     prevTodos.map((todo) => {
+  //       if (todo.id === id) {
+  //         return {
+  //           ...todo,
+  //           like: !todo.like,
+  //         };
+  //       }
+  //       return todo;
+  //     })
+  //   );
+  // };
+
   const likesBtnHandler = (id) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) => {
-        if (todo.id === id) {
-          return {
-            ...todo,
-            like: !todo.like,
-          };
-        }
-        return todo;
-      })
-    );
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, like: todo.like + 1 } : todo)));
   };
 
   return (
@@ -68,7 +72,7 @@ export default function App() {
             <BodyContent key={todo.id}>
               <span key={todo.id}>{todo.value}</span>
               <LikesBtn onClick={() => likesBtnHandler(todo.id)}>
-                좋아요<span> {todo.like ? 1 : 0} </span>
+                좋아요<span> {todo.like} </span>
               </LikesBtn>
               <DelBtn onClick={() => deleteBtnHandler(todo.id)}>삭제</DelBtn>
             </BodyContent>
