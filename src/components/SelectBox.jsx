@@ -7,7 +7,7 @@ const SelectBox = () => {
   const [open, setOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const handleSelect1Change = (option) => {
+  const selectChange = (option) => {
     setSelectedOption(option);
     setOpen(false);
   };
@@ -29,7 +29,7 @@ const SelectBox = () => {
               <SelectValue
                 key={option}
                 onClick={() => {
-                  handleSelect1Change(option);
+                  selectChange(option);
                 }}
               >
                 {option}
@@ -38,6 +38,7 @@ const SelectBox = () => {
           </SelectList>
         )}
       </SelectWrap>
+      {selectedOption && <div>선택된 상품 : {selectedOption}</div>}
     </div>
   );
 };
